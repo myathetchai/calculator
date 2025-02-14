@@ -2,8 +2,8 @@ import "./App.css";
 import React, { useState } from "react";
 
 function App() {
-  const [num1, setNum1] = useState("");
-  const [num2, setNum2] = useState("");
+  const [num1, setNum1] = useState(null);
+  const [num2, setNum2] = useState(null);
   const [result, setResult] = useState(null);
 
   async function handleCalculate(operation) {
