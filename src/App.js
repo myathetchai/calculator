@@ -28,6 +28,7 @@ function App() {
       setResult(result);
       console.log("result from backend:", result);
     } catch (error) {
+      // handle errors clearly
       console.error("Error during API call to calculator backend:", error);
       alert(
         "An error occurred while performing the calculation. Please try again."
