@@ -12,25 +12,33 @@ function App() {
       num2: num2 || 0,
     });
 
-    const response = await fetch(`http://localhost:5001/${operation}`, {
-      method: "POST",
-      body: params,
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
-      },
-    });
+    try {
+      // sending POST request
+      const response = await fetch(`http://localhost:5001/${operation}`, {
+        method: "POST",
+        body: params,
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+      });
 
-    const data = await response.json();
-    const result = data.result;
-    setResult(result);
+      const data = await response.json();
+      const result = data.result;
 
-    console.log("result from backend: ", result);
+      setResult(result);
+      console.log("result from backend:", result);
+    } catch (error) {
+      console.error("Error during API call to calculator backend:", error);
+      alert(
+        "An error occurred while performing the calculation. Please try again."
+      );
+    }
   }
 
   return (
     <div className="App">
       <div className="container">
-        <h1 className="heading">Calculator</h1>
+        <h1 className="heading">CALCULATOR</h1>
 
         <div className="section">
           <label htmlFor="num1">First number:</label>
@@ -58,12 +66,12 @@ function App() {
           </button>
           <button id="subtract" onClick={() => handleCalculate("subtract")}>
             Subtract
-          </button>{" "}
+          </button>
         </div>
 
         <div className="result">
-          <text style={{ fontFamily: "Saira" }}>Result: </text>
-          <text style={{ fontWeight: "bold" }}>{result} </text>
+          <span style={{ fontFamily: "Saira" }}>Result: </span>
+          <span style={{ fontWeight: "bold" }}>{result}</span>
         </div>
       </div>
     </div>
